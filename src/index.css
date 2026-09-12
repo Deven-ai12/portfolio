@@ -1,0 +1,162 @@
+
+@font-face {
+  font-family: "IBM Plex Mono";
+  src: url("/fonts/IBMPlexMono-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------
+   BASE
+-------------------------------- */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis:not(.lenis-scrolling) [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+body {
+  margin: 0;
+  background: #07070b;
+  color: #f2f2f5;
+  font-family: "IBM Plex Mono", monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* --------------------------------
+   SECTION SCROLL OFFSET
+   Prevents fixed navbar from covering
+   section headings after navigation.
+-------------------------------- */
+
+section[id] {
+  scroll-margin-top: 110px;
+}
+
+/* --------------------------------
+   SELECTION
+-------------------------------- */
+
+::selection {
+  background: #5b7cff;
+  color: #07070b;
+}
+
+/* --------------------------------
+   CUSTOM CURSOR
+-------------------------------- */
+
+.custom-cursor-active,
+.custom-cursor-active * {
+  cursor: none !important;
+}
+
+/* --------------------------------
+   SCROLLBAR
+-------------------------------- */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #07070b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #232333;
+  border-radius: 4px;
+}
+
+/* --------------------------------
+   GENERIC REVEAL
+-------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* --------------------------------
+   GENERAL MARQUEE
+-------------------------------- */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 28s linear infinite;
+}
+
+/* --------------------------------
+   SKILLS MARQUEE
+-------------------------------- */
+
+@keyframes skills-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.skills-marquee {
+  animation: skills-marquee 35s linear infinite;
+}
+
+.skills-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* --------------------------------
+   REDUCED MOTION
+-------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track,
+  .skills-marquee {
+    animation: none;
+  }
+
+  .about-watermark {
+    transform: none !important;
+  }
+}
+
